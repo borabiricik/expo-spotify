@@ -1,43 +1,46 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Audio } from "expo-av";
-import { ISoundStoreState, IStopSoundPayload } from "./types/soundStore";
 import { WritableDraft } from "immer/dist/internal";
+import React from "react";
+import { ISoundStoreState } from "./types/soundStore";
 
 const initialState: ISoundStoreState = {
-  sound: null,
+  sound: new Audio.Sound(),
 };
 
 export const playSound = createAsyncThunk("playSound", async () => {
-  console.log("Loading sound");
-  const { sound } = await Audio.Sound.createAsync(
-    require("../../core/sounds/track06.mp3"),
-    {
-      shouldPlay: true,
-      isLooping: true,
-    }
-  );
-
-  console.log("Playing sound");
-  await sound.playAsync();
-  return sound as WritableDraft<Audio.Sound>;
+  if (!initialState.sound?._loaded) {
+    await initialState.sound?.loadAsync(
+      require("../../core/sounds/track06.mp3")
+    );
+  }
+  try {
+    await initialState.sound?.playAsync();
+    console.log('playing sound')
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 const soundStore = createSlice({
   name: "sounds",
   initialState,
   reducers: {
+    pauseSound: (state) => {
+      if (state.sound && state.sound._loaded) {
+        state.sound.pauseAsync();
+      }
+    },
     stopSound: (state) => {
-      state.sound?.pauseAsync();
+      if (state.sound && state.sound._loaded) {
+        state.sound.stopAsync();
+        state.sound.unloadAsync();
+      }
     },
   },
-  extraReducers: ({ addCase }) => {
-    addCase(playSound.fulfilled, (state, action) => {
-      state.sound = action.payload;
-    });
-  },
+  extraReducers: ({ addCase }) => {},
 });
 
-export const { stopSound } = soundStore.actions;
+export const { pauseSound,stopSound } = soundStore.actions;
 
 export default soundStore.reducer;
