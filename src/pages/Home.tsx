@@ -3,10 +3,11 @@ import React from "react";
 import { Button, Dimensions, SafeAreaView, StyleSheet } from "react-native";
 import { useAppDispatch } from "../core/redux/hook";
 import { pauseSound, playSound, stopSound } from "../features/redux/soundStore";
+import HomeNewRelease from "../modules/home/components/HomeNewRelease";
 import Recent from "../modules/home/Recent";
 
 const Home = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   return (
     //@ts-ignore
     <LinearGradient
@@ -17,9 +18,10 @@ const Home = () => {
     >
       <SafeAreaView>
         <Recent />
-        <Button title="Play song" onPress={()=> dispatch(playSound())} />
-        <Button title="Stop song" onPress={()=> dispatch(stopSound())} />
-        <Button title="Pause song" onPress={()=> dispatch(pauseSound())} />
+        <HomeNewRelease />
+        <Button title="Play song" onPress={() => dispatch(playSound())} />
+        <Button title="Stop song" onPress={() => dispatch(stopSound())} />
+        <Button title="Pause song" onPress={() => dispatch(pauseSound())} />
       </SafeAreaView>
     </LinearGradient>
   );
@@ -31,6 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingTop: Dimensions.get('screen').height/10
+    paddingTop: Dimensions.get("screen").height / 10,
   },
 });
