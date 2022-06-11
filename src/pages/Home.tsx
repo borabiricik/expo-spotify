@@ -1,10 +1,12 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { Button, Dimensions, SafeAreaView, StyleSheet } from "react-native";
 import Recent from "../core/components/pages/Home/Recent";
 import { useAppDispatch } from "../core/redux/hook";
+import { playSound, stopSound } from "../features/redux/soundStore";
 
 const Home = () => {
+  const dispatch = useAppDispatch()
   return (
     //@ts-ignore
     <LinearGradient
@@ -15,6 +17,8 @@ const Home = () => {
     >
       <SafeAreaView>
         <Recent />
+        <Button title="Play song" onPress={()=> dispatch(playSound())} />
+        <Button title="Stop song" onPress={()=> dispatch(stopSound())} />
       </SafeAreaView>
     </LinearGradient>
   );
@@ -26,6 +30,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingTop:100
+    paddingTop: Dimensions.get('screen').height/10
   },
 });

@@ -13,6 +13,7 @@ import Library from "../../pages/Library";
 import HomeIcon from "../assets/icons/HomeIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import LibraryIcon from "../assets/icons/LibraryIcon";
+import { LinearGradient } from "expo-linear-gradient";
 
 const MainRouter = () => {
   const BottomTabs = createBottomTabNavigator();
@@ -25,6 +26,9 @@ const MainRouter = () => {
             tabBarInactiveTintColor: secondaryTextColor,
             tabBarActiveTintColor: mainTextColor,
             headerShown:false,
+            headerBackgroundContainerStyle:{
+              backgroundColor:'transparent'
+            },
             tabBarStyle: {
               backgroundColor: "transparent",
             },
