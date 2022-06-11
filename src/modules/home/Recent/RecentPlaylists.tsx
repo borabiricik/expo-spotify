@@ -1,8 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import GridCard, {
-  IGridCardProps,
-} from "../../../../../common/components/GridCard";
+import GridCard from "../../../common/components/GridCard";
 
 const dummyPlaylistData = [
   {

@@ -1,14 +1,7 @@
-import {
-  Image,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React from "react";
-import { cardContainer, fontBold, fontNormal } from "../../core/styles";
 import { BlurView } from "expo-blur";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { fontBold } from "../../core/styles";
 
 export interface IGridCardProps {
   id: number;
@@ -27,7 +20,7 @@ const GridCard = (props: IGridCardProps) => {
           <Text style={styles.cardText}>{title}</Text>
           {isPlaying && (
             <Image
-              source={require("../../core/components/pages/Home/assets/icons/Dots.png")}
+              source={require("../../modules/home/assets/icons/Dots.png")}
             />
           )}
         </View>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import RecentTop from './RecentTop'
 import RecentPlaylists from './RecentPlaylists'
+import RecentTop from './RecentTop'
 
 const Recent = () => {
   return (
@@ -13,5 +13,3 @@ const Recent = () => {
 }
 
 export default Recent
-
-const styles = StyleSheet.create({})

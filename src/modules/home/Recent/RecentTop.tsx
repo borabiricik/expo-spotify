@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { fontBold } from "../../../../styles";
+import { fontBold } from "../../../core/styles";
 
 const RecentTop = () => {
   return (

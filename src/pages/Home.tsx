@@ -1,9 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Button, Dimensions, SafeAreaView, StyleSheet } from "react-native";
-import Recent from "../core/components/pages/Home/Recent";
 import { useAppDispatch } from "../core/redux/hook";
-import { playSound, stopSound } from "../features/redux/soundStore";
+import { pauseSound, playSound, stopSound } from "../features/redux/soundStore";
+import Recent from "../modules/home/Recent";
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -19,6 +19,7 @@ const Home = () => {
         <Recent />
         <Button title="Play song" onPress={()=> dispatch(playSound())} />
         <Button title="Stop song" onPress={()=> dispatch(stopSound())} />
+        <Button title="Pause song" onPress={()=> dispatch(pauseSound())} />
       </SafeAreaView>
     </LinearGradient>
   );

@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Audio } from "expo-av";
-import { WritableDraft } from "immer/dist/internal";
-import React from "react";
 import { ISoundStoreState } from "./types/soundStore";
 
 const initialState: ISoundStoreState = {
@@ -16,7 +14,7 @@ export const playSound = createAsyncThunk("playSound", async () => {
   }
   try {
     await initialState.sound?.playAsync();
-    console.log('playing sound')
+    console.log("playing sound");
   } catch (e) {
     console.log(e);
   }
@@ -34,13 +32,13 @@ const soundStore = createSlice({
     stopSound: (state) => {
       if (state.sound && state.sound._loaded) {
         state.sound.stopAsync();
+
         state.sound.unloadAsync();
       }
     },
   },
-  extraReducers: ({ addCase }) => {},
 });
 
-export const { pauseSound,stopSound } = soundStore.actions;
+export const { pauseSound, stopSound } = soundStore.actions;
 
 export default soundStore.reducer;
